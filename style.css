@@ -1,0 +1,78 @@
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #75B79E;
+    font-size: 56px;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+body{
+    background-color: rgb(238, 249, 191);
+}
+
+.card{
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
+    display: flex;
+    position: relative;
+    backface-visibility: hidden;
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.linha1{
+    display: flex;
+    justify-content: space-between; 
+    margin: 60px auto;
+    flex-wrap: wrap;   
+    max-width: 950px;
+    min-height: 500px;
+}
+
+.praBaixo{
+    transform: rotateY(180deg);
+}
+
+.virada .praBaixo{
+    transform: rotateY(0deg);
+}
+
+.virada .praCima {
+    transform: rotateY(-180deg);
+  }
+
+
+/*  MOBILE  */
+@media (max-width: 767px){
+    h1{
+    font-size: 36px;
+    margin: 30px auto;
+    text-align: center;
+    flex-wrap: wrap;
+    }
+
+    .linha1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card{
+        margin-bottom: 36px;
+        display: flex;
+    }
+}
