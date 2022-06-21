@@ -7,10 +7,12 @@ let carta1;
 let carta2;
 let contador = 0;
 let acertouOsCards = 0;
+let segundos = 0;
+let tempo = 0;
 
 function inicioDoJogo (){
     alert("Para jogar Parrot você deve informar um quantidade par de cartas entre 4 e 14");
-    qtdDeCartas = prompt("Com quantas cartas você quer jogar?");
+    qtdDeCartas = Number(prompt("Com quantas cartas você quer jogar?"));
 
     while (qtdDeCartas < 4 || qtdDeCartas % 2 !== 0 || qtdDeCartas > 14) {
         alert("Quantidade inválida")
@@ -37,7 +39,7 @@ function distribuiCards (){
         for (let i = 0;  i < baralho.length; i++){
             carta = `
                 <li class = "card" onclick="mostrarParrot(this)">
-                    <div class='praCima card'>
+                    <div class='praCima'>
                         <img src='imagens/front.png'>
                     </div>
                     <div class='praBaixo card'>
@@ -50,7 +52,7 @@ function distribuiCards (){
 }
 
 function mostrarParrot(cartaClicada){ 
-    if (cartaClicada.classList.contains("virada")){
+    if (cartaClicada.classList.contains("virada") || carta2 !== undefined){
         return;
     }
     contador++;
@@ -62,6 +64,7 @@ function mostrarParrot(cartaClicada){
         if (carta1.innerHTML === carta2.innerHTML){
             acertouOsCards += 2;
             terminouJogo();
+            voltarAoNormal();
         } else{
             setTimeout (desvirarCarta, 1000)
         }
@@ -81,7 +84,8 @@ function voltarAoNormal (){
 
 function terminouJogo () {
     if (acertouOsCards === qtdDeCartas){
-        alert(`Parabéns, você venceu em ${contador} jogadas!`)
+        clearInterval(tempo);
+        alert(`Parabéns, você venceu em ${contador} jogadas, em ${segundos} segundos!`)
     }
 }
 
@@ -91,3 +95,8 @@ function embaralhar (){
 
 inicioDoJogo ()
 formaParesDeCards ()
+
+tempo = setInterval (function(){
+    segundos++;
+    document.querySelector(".relogio").innerHTML = segundos
+}, 1000);
